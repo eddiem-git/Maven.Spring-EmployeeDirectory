@@ -1,11 +1,10 @@
 package io.zipcoder.persistenceapp.modules;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
-public class Employee {
+public class Employee implements Serializable {
 
     @Id
     private Integer employeeNum;
@@ -16,7 +15,8 @@ public class Employee {
     private String email;
     private String hireDate;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "manager_id")
     private Employee manager;
     private Integer departmentNum;
 

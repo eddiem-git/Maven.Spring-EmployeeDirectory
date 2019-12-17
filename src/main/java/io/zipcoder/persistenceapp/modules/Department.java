@@ -1,15 +1,20 @@
 package io.zipcoder.persistenceapp.modules;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
-public class Department {
+public class Department implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
     private Integer id;
     private String name;
     @OneToOne
     private Employee manager;
+
+    public Department(){
+
+    }
 
     public Department(String name, Employee manager) {
         this.name = name;
